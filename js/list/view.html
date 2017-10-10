@@ -1,0 +1,36 @@
+<h2>{{data.title}}</h2>
+<div class="list-group">
+    <a href="#/subject/{{item.id}}" class="list-group-item " ng-repeat="item in data.subjects">
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" ng-src="{{item.images.small}}" alt="">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{item.title}}</h4>
+                <p>上映时间:{{item.subject.year}}</p>
+                <p>分类: <span ng-repeat="type in item.genres">{{type}}<span ng-if="!$last">、</span></span>
+                </p>
+                <p>主演: <span ng-repeat="name in item.casts">{{name.name}}<span ng-if="!$last">、</span></span>
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+<div ng-show = "!loading">
+    <div>
+        共{{data.total}}条,第{{currentPage}}/{{pageTotal}}页
+    </div>
+    <nav aria-label="...">
+        <ul class="pager">
+            <li ng-class="{'disabled':currentPage<=1}"><a ng-click="toPage(currentPage-1)">上一页</a></li>
+            <li ng-class="{'disabled':currentPage>=pageTotal}"><a ng-click="toPage(1+currentPage)">下一页</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="loading" ng-show="loading">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
